@@ -1,0 +1,489 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg-primary: #090d16;
+  --bg-secondary: #111827;
+  --bg-card: rgba(17, 24, 39, 0.7);
+  --border-color: rgba(255, 255, 255, 0.08);
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+
+  --primary: #6366f1;
+  --primary-hover: #4f46e5;
+  --primary-glow: rgba(99, 102, 241, 0.3);
+
+  --success: #10b981;
+  --success-glow: rgba(16, 185, 129, 0.2);
+  --warning: #f59e0b;
+  --warning-glow: rgba(245, 158, 11, 0.2);
+  --danger: #ef4444;
+  --danger-glow: rgba(239, 68, 68, 0.2);
+
+  --sidebar-width: 260px;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', 'Outfit', sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Sidebar Styling */
+.sidebar {
+  width: var(--sidebar-width);
+  min-height: 100vh;
+  background-color: var(--bg-secondary);
+  border-right: 1px solid var(--border-color);
+  color: var(--text-primary);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 10px 0 30px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar-brand {
+  background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.sidebar-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  border-left: 4px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.sidebar-link:hover,
+.sidebar-link.active {
+  color: var(--text-primary);
+  background-color: rgba(99, 102, 241, 0.08);
+  border-left-color: var(--primary);
+  text-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
+}
+
+/* Main Content Area */
+.main-content {
+  margin-left: var(--sidebar-width);
+  padding: 40px 30px;
+  padding-top: 100px;
+  min-height: 100vh;
+  transition: all 0.3s ease;
+}
+
+/* Navbar Top */
+.navbar-top {
+  background-color: rgba(9, 13, 22, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-color);
+  height: 70px;
+  margin-left: var(--sidebar-width);
+  left: 0;
+  right: 0;
+  z-index: 999;
+}
+
+/* Glassmorphism Cards */
+.card {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  color: var(--text-primary);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px 0 rgba(99, 102, 241, 0.15);
+}
+
+.card-header {
+  background-color: transparent;
+  border-bottom: 1px solid var(--border-color);
+  padding: 20px 24px;
+}
+
+.card-body {
+  padding: 24px;
+}
+
+/* Auth pages — override dark glass card for light login/register */
+.auth-card {
+  background: #ffffff;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+  color: #1e293b;
+}
+
+.auth-card:hover {
+  transform: none;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+}
+
+.auth-card h2,
+.auth-card .fw-bold {
+  color: #1e293b;
+}
+
+.auth-card .text-muted {
+  color: #64748b !important;
+}
+
+.auth-card .form-label {
+  color: #334155;
+}
+
+.auth-card .form-control,
+.auth-card .form-select {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+  border-color: #e2e8f0 !important;
+  -webkit-text-fill-color: #0f172a;
+  caret-color: #0f172a;
+}
+
+.auth-card .form-control:focus,
+.auth-card .form-select:focus {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+  border-color: #6366f1 !important;
+  box-shadow: 0 0 0 0.2rem rgba(99, 102, 241, 0.25) !important;
+  -webkit-text-fill-color: #0f172a;
+  caret-color: #0f172a;
+}
+
+.auth-card .form-control::placeholder {
+  color: #94a3b8 !important;
+  -webkit-text-fill-color: #94a3b8;
+}
+
+.auth-card .form-select option {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+}
+
+.auth-card .btn-primary {
+  background-color: #6366f1;
+  border-color: #6366f1;
+}
+
+.auth-card .btn-primary:hover,
+.auth-card .btn-primary:focus {
+  background-color: #4f46e5;
+  border-color: #4f46e5;
+}
+
+
+.auth-card a {
+  color: #6366f1;
+}
+
+/* Stat Cards */
+.stat-card {
+  border-left: 5px solid var(--primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+  opacity: 0.5;
+}
+
+.stat-card.success {
+  border-left-color: var(--success);
+}
+
+.stat-card.success::after {
+  background: radial-gradient(circle, var(--success-glow) 0%, transparent 70%);
+}
+
+.stat-card.warning {
+  border-left-color: var(--warning);
+}
+
+.stat-card.warning::after {
+  background: radial-gradient(circle, var(--warning-glow) 0%, transparent 70%);
+}
+
+.stat-card.danger {
+  border-left-color: var(--danger);
+}
+
+.stat-card.danger::after {
+  background: radial-gradient(circle, var(--danger-glow) 0%, transparent 70%);
+}
+
+/* Table Styling Override */
+.table {
+  --bs-table-color: #f8fafc !important;
+  --bs-table-striped-color: #f8fafc !important;
+  --bs-table-hover-color: #ffffff !important;
+  --bs-table-active-color: #ffffff !important;
+  --bs-table-bg: transparent !important;
+  --bs-table-striped-bg: rgba(255, 255, 255, 0.03) !important;
+  --bs-table-hover-bg: rgba(255, 255, 255, 0.05) !important;
+  --bs-table-border-color: rgba(255, 255, 255, 0.08) !important;
+  color: var(--text-primary) !important;
+  margin-bottom: 0;
+  vertical-align: middle;
+}
+
+.table th {
+  color: var(--text-secondary) !important;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+  padding: 16px;
+  background-color: rgba(255, 255, 255, 0.02) !important;
+}
+
+.table td,
+.table> :not(caption)>*>* {
+  padding: 16px;
+  background-color: transparent !important;
+  color: var(--text-primary) !important;
+}
+
+.table-hover tbody tr:hover>* {
+  background-color: rgba(255, 255, 255, 0.03) !important;
+  color: #ffffff !important;
+}
+
+/* Dark-theme utility overrides (SB Admin leftovers force black text) */
+.text-gray-800,
+.text-gray-900,
+.text-dark:not(.badge) {
+  color: var(--text-primary) !important;
+}
+
+.main-content,
+.main-content .card,
+.main-content .card-body {
+  color: var(--text-primary);
+}
+
+.main-content .text-muted {
+  color: var(--text-secondary) !important;
+}
+
+/* Custom Badges */
+.badge {
+  padding: 6px 12px;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+
+/* Inputs & Form Controls styling */
+.form-control,
+.form-select {
+  background-color: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid var(--border-color) !important;
+  color: var(--text-primary) !important;
+  border-radius: 8px;
+  padding: 10px 14px;
+  transition: all 0.2s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 4px var(--primary-glow) !important;
+  outline: none;
+}
+
+.form-control:disabled {
+  background-color: rgba(255, 255, 255, 0.01) !important;
+  opacity: 0.6;
+}
+
+/* Fix: dropdown option lists were rendering light text on the browser's
+   default white popup background (invisible/unreadable). Force a dark,
+   opaque background + light text on the options themselves. */
+.form-select option,
+select option {
+  background-color: #111827 !important;
+  color: #f8fafc !important;
+}
+
+.form-select option:checked,
+.form-select option:hover,
+select option:checked,
+select option:hover {
+  background-color: #6366f1 !important;
+  color: #ffffff !important;
+}
+
+.form-label {
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+
+/* Modal Custom Styling */
+.modal-content {
+  background-color: var(--bg-secondary) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5) !important;
+}
+
+.modal-header {
+  border-bottom: 1px solid var(--border-color) !important;
+  padding: 20px 24px !important;
+}
+
+.modal-footer {
+  border-top: 1px solid var(--border-color) !important;
+  padding: 16px 24px !important;
+}
+
+.modal-title {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.btn-close {
+  filter: invert(1) grayscale(1) brightness(2);
+}
+
+/* Buttons Glow Effects */
+.btn-primary {
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%) !important;
+  border: none !important;
+  box-shadow: 0 4px 15px var(--primary-glow) !important;
+  padding: 10px 20px;
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%) !important;
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  border: none !important;
+  box-shadow: 0 4px 15px var(--success-glow) !important;
+  padding: 10px 20px;
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
+  border: none !important;
+  box-shadow: 0 4px 15px var(--danger-glow) !important;
+  padding: 10px 20px;
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+.btn-warning {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+  border: none !important;
+  box-shadow: 0 4px 15px var(--warning-glow) !important;
+  color: white !important;
+  padding: 10px 20px;
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+/* Notifications Dropdown */
+.notification-dropdown {
+  position: absolute;
+  right: 0;
+  width: 320px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  z-index: 1050;
+  overflow: hidden;
+}
+
+.notification-dropdown .bg-light {
+  background-color: rgba(99, 102, 241, 0.06) !important;
+}
+
+.notification-dropdown div {
+  border-color: var(--border-color) !important;
+}
+
+.list-group-item {
+  background-color: transparent !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-primary) !important;
+  padding: 16px 20px !important;
+}
+
+.list-group-item.bg-light {
+  background-color: rgba(99, 102, 241, 0.05) !important;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Responsiveness overrides */
+@media (max-width: 991px) {
+  .sidebar {
+    margin-left: -260px;
+  }
+
+  .sidebar.active {
+    margin-left: 0;
+  }
+
+  .main-content {
+    margin-left: 0;
+    padding: 30px 15px;
+    padding-top: 90px;
+  }
+
+  .navbar-top {
+    margin-left: 0;
+  }
+}
